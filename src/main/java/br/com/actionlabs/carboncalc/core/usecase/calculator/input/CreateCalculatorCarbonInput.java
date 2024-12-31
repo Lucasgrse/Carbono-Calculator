@@ -1,11 +1,7 @@
 package br.com.actionlabs.carboncalc.core.usecase.calculator.input;
 
 import br.com.actionlabs.carboncalc.core.domain.transportationEmission.TransportationType;
-import lombok.Getter;
-import lombok.Setter;
 
-@Getter
-@Setter
 public class CreateCalculatorCarbonInput {
     private String name;
     private String email;

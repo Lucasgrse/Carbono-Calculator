@@ -20,7 +20,8 @@ public class UpdateCalculatorCarbonUseCase implements UseCase<UpdateCalculatorCa
 
     public UpdateCalculatorCarbonUseCase(
             CalculatorEmissionInterface calculatorEmissionInterface,
-            TransportationEmissionFactorRepository transportationEmissionFactorRepository) {
+            TransportationEmissionFactorRepository transportationEmissionFactorRepository
+    ) {
         this.calculatorEmissionInterface = calculatorEmissionInterface;
         this.transportationEmissionFactorRepository = transportationEmissionFactorRepository;
     }
@@ -37,7 +38,7 @@ public class UpdateCalculatorCarbonUseCase implements UseCase<UpdateCalculatorCa
 
             existingCalculation.setEnergyConsumption(input.getEnergyConsumption());
             existingCalculation.setTransportEmission(totalTransportEmission);
-            existingCalculation.setRecyclableWaste(input.getRecyclePercentage());
+            existingCalculation.setRecyclableWaste(input.getRecyclePercentage() * 2);
             existingCalculation.setNonRecyclableWaste(input.getSolidWasteTotal());
 
             return calculatorEmissionInterface.save(existingCalculation);
