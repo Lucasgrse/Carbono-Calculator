@@ -7,7 +7,26 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Data
 @Document("energyEmissionFactor")
 public class EnergyEmissionFactor {
-  @Id
-  private String uf;
-  private double factor;
+    @Id
+    private String uf;
+    private double factor;
+
+    public EnergyEmissionFactor(String uf, double factor) {
+    }
+
+    public String getUf() {
+        return uf;
+    }
+
+    public void setUf(String uf) {
+        this.uf = uf;
+    }
+
+  public double getFactor() {
+    return factor;
+  }
+
+  public void setFactor(double factor) {
+    this.factor = factor;
+  }
 }
