@@ -1,0 +1,16 @@
+# Arquivos gerados automaticamente
+checksums.lock
+CreateCalculatorCarbonUseCase.class.uniqueId1
+executionHistory.bin
+executionHistory.lock
+fileHases.bin
+fileHases.lock
+previous-compilation-data.bin
+resourceHasesCache.bin
+
+# Diretórios do Gradle
+.gradle/
+build/
+
+# Ignorar arquivos de build em subdiretórios
+**/build/
