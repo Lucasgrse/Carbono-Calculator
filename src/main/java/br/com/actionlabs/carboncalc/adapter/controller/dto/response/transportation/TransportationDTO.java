@@ -8,6 +8,11 @@ public class TransportationDTO {
   private TransportationType type;
   private int monthlyDistance;
 
+  public TransportationDTO(TransportationType type, int monthlyDistance) {
+    this.type = type;
+    this.monthlyDistance = monthlyDistance;
+  }
+
   public TransportationType getType() {
     return type;
   }

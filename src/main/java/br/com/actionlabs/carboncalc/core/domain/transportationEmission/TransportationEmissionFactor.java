@@ -11,6 +11,11 @@ public class TransportationEmissionFactor {
     private TransportationType type;
     private double factor;
 
+    public TransportationEmissionFactor(TransportationType type, double factor) {
+        this.type = type;
+        this.factor = factor;
+    }
+
     public TransportationType getType() {
         return type;
     }
