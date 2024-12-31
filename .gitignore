@@ -1,6 +1,5 @@
-# Arquivos gerados automaticamente
 checksums.lock
-CreateCalculatorCarbonUseCase.class.uniqueId1
+CreateCalculatorCarbonUseCase.class.uniqueId*
 executionHistory.bin
 executionHistory.lock
 fileHases.bin
@@ -8,9 +7,25 @@ fileHases.lock
 previous-compilation-data.bin
 resourceHasesCache.bin
 
-# Diretórios do Gradle
-.gradle/
-build/
+# Arquivos e pastas do IntelliJ IDEA
+.idea/
+*.iml
+*.bin
+*.lock
 
-# Ignorar arquivos de build em subdiretórios
+
+# Arquivos gerados pelo build
+buildOutputCleanup.lock
 **/build/
+
+# Arquivos de configuração do Gradle
+.gradle/
+gradle.xml
+jarRepositories.xml
+
+# Arquivos de configuração do projeto
+compiler.xml
+misc.xml
+Project_Default.xml
+uiDesigner.xml
+vcs.xml
