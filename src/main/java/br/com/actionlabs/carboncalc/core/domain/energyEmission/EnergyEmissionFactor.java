@@ -1,4 +1,4 @@
-package br.com.actionlabs.carboncalc.model;
+package br.com.actionlabs.carboncalc.core.domain.energyEmission;
 
 import lombok.Data;
 import org.springframework.data.annotation.Id;

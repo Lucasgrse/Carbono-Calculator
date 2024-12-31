@@ -1,4 +1,4 @@
-package br.com.actionlabs.carboncalc.enums;
+package br.com.actionlabs.carboncalc.core.domain.transportationEmission;
 
 public enum TransportationType {
   CAR,
