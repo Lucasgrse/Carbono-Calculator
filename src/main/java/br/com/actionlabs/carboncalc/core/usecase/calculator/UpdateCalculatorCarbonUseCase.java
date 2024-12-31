@@ -7,6 +7,7 @@ import br.com.actionlabs.carboncalc.core.repository.CalculatorEmissionInterface;
 import br.com.actionlabs.carboncalc.core.repository.TransportationEmissionFactorRepository;
 import br.com.actionlabs.carboncalc.core.usecase.UseCase;
 import br.com.actionlabs.carboncalc.core.usecase.calculator.input.UpdateCalculatorCarbonInput;
+import br.com.actionlabs.carboncalc.core.voter.calculator.UpdateCalculatorEmissionVoter;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,18 +17,23 @@ import java.util.Optional;
 public class UpdateCalculatorCarbonUseCase implements UseCase<UpdateCalculatorCarbonInput, Object> {
 
     private final CalculatorEmissionInterface calculatorEmissionInterface;
+    private final UpdateCalculatorEmissionVoter updateCalculatorEmissionVoter;
     private final TransportationEmissionFactorRepository transportationEmissionFactorRepository;
 
     public UpdateCalculatorCarbonUseCase(
             CalculatorEmissionInterface calculatorEmissionInterface,
+            UpdateCalculatorEmissionVoter updateCalculatorEmissionVoter,
             TransportationEmissionFactorRepository transportationEmissionFactorRepository
+
     ) {
         this.calculatorEmissionInterface = calculatorEmissionInterface;
+        this.updateCalculatorEmissionVoter = updateCalculatorEmissionVoter;
         this.transportationEmissionFactorRepository = transportationEmissionFactorRepository;
     }
 
     @Override
     public Object execute(UpdateCalculatorCarbonInput input) {
+        updateCalculatorEmissionVoter.invoke(input);
 
         Optional<CalculatorEmissionFactor> findCalculation = calculatorEmissionInterface.findById(input.getId());
 
@@ -52,7 +58,7 @@ public class UpdateCalculatorCarbonUseCase implements UseCase<UpdateCalculatorCa
         return transportationList.stream()
                 .mapToDouble(transport -> {
                     TransportationEmissionFactor factor = transportationEmissionFactorRepository.findById(transport.getType())
-                            .orElseThrow(() -> new IllegalArgumentException("Fator de emissão não encontrado para o tipo: " + transport.getType()));
+                            .orElseThrow();
                     return transport.getMonthlyDistance() * factor.getFactor();
                 })
                 .sum();

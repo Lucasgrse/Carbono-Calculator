@@ -1,6 +1,8 @@
 package br.com.actionlabs.carboncalc.adapter.controller.dto.request.calculation;
 
 import br.com.actionlabs.carboncalc.adapter.controller.dto.response.TransportationDTO;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 import java.util.List;
@@ -9,6 +11,8 @@ import java.util.List;
 public class UpdateCalcInfoRequestDTO {
   private String id;
   private int energyConsumption;
+  @NotNull
+  @NotEmpty(message = "A lista de transporte não pode estar vazia.")
   private List<TransportationDTO> transportation;
   private int solidWasteTotal;
   private double recyclePercentage;

@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 @Document("calculatorEmissionFactor")
 public class CalculatorEmissionFactor {
     @Id
-    private String id; // ID único do cálculo
+    private String id;
     private String name;
     private String email;
     private String phoneNumber;

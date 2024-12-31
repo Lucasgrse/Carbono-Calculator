@@ -8,6 +8,7 @@ import br.com.actionlabs.carboncalc.core.repository.CalculatorEmissionInterface;
 import br.com.actionlabs.carboncalc.core.repository.TransportationEmissionFactorRepository;
 import br.com.actionlabs.carboncalc.core.usecase.calculator.UpdateCalculatorCarbonUseCase;
 import br.com.actionlabs.carboncalc.core.usecase.calculator.input.UpdateCalculatorCarbonInput;
+import br.com.actionlabs.carboncalc.core.voter.calculator.UpdateCalculatorEmissionVoter;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
@@ -31,6 +32,9 @@ public class UpdateCalculatorCarbonUseCaseTest {
     @Mock
     private TransportationEmissionFactorRepository transportationEmissionFactorRepository;
 
+    @Mock
+    private UpdateCalculatorEmissionVoter updateCalculatorEmissionVoter;
+
     private UpdateCalculatorCarbonUseCase updateCalculatorCarbonUseCase;
 
     @BeforeEach
@@ -38,6 +42,7 @@ public class UpdateCalculatorCarbonUseCaseTest {
         MockitoAnnotations.openMocks(this);
         updateCalculatorCarbonUseCase = new UpdateCalculatorCarbonUseCase(
                 calculatorEmissionInterface,
+                updateCalculatorEmissionVoter,
                 transportationEmissionFactorRepository
         );
     }

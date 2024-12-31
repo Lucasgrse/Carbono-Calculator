@@ -22,11 +22,11 @@ public class EnergyEmissionFactor {
         this.uf = uf;
     }
 
-  public double getFactor() {
-    return factor;
-  }
+    public double getFactor() {
+        return factor;
+    }
 
-  public void setFactor(double factor) {
-    this.factor = factor;
-  }
+    public void setFactor(double factor) {
+        this.factor = factor;
+    }
 }

@@ -11,6 +11,7 @@ import br.com.actionlabs.carboncalc.core.repository.SolidWasteEmissionFactorRepo
 import br.com.actionlabs.carboncalc.core.repository.TransportationEmissionFactorRepository;
 import br.com.actionlabs.carboncalc.core.usecase.UseCase;
 import br.com.actionlabs.carboncalc.core.usecase.calculator.input.CreateCalculatorCarbonInput;
+import br.com.actionlabs.carboncalc.core.voter.calculator.CreateCalculatorEmissionVoter;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -19,17 +20,20 @@ import java.time.LocalDateTime;
 public class CreateCalculatorCarbonUseCase implements UseCase<CreateCalculatorCarbonInput, String> {
 
     private final CalculatorEmissionInterface calculatorEmissionInterface;
+    private final CreateCalculatorEmissionVoter createCalculatorEmissionVoter;
     private final EnergyEmissionFactorRepository energyEmissionFactorRepository;
     private final SolidWasteEmissionFactorRepository solidWasteEmissionFactorRepository;
     private final TransportationEmissionFactorRepository transportationEmissionFactorRepository;
 
     public CreateCalculatorCarbonUseCase(
             CalculatorEmissionInterface calculatorEmissionInterface,
+            CreateCalculatorEmissionVoter createCalculatorEmissionVoter,
             EnergyEmissionFactorRepository energyEmissionFactorRepository,
             SolidWasteEmissionFactorRepository solidWasteEmissionFactorRepository,
             TransportationEmissionFactorRepository transportationEmissionFactorRepository
     ) {
         this.calculatorEmissionInterface = calculatorEmissionInterface;
+        this.createCalculatorEmissionVoter = createCalculatorEmissionVoter;
         this.energyEmissionFactorRepository = energyEmissionFactorRepository;
         this.solidWasteEmissionFactorRepository = solidWasteEmissionFactorRepository;
         this.transportationEmissionFactorRepository = transportationEmissionFactorRepository;
@@ -37,6 +41,7 @@ public class CreateCalculatorCarbonUseCase implements UseCase<CreateCalculatorCa
 
     @Override
     public String execute(CreateCalculatorCarbonInput input) {
+        createCalculatorEmissionVoter.invoke(input);
 
         double calculateEnergy = calculateEnergyEmission(input.getUf(), input.energyConsumption);
         double calculateTransport = calculateTransportEmission(input.transportType, input.distance);
