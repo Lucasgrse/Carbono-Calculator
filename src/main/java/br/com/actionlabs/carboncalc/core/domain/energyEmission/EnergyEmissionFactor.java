@@ -11,6 +11,9 @@ public class EnergyEmissionFactor {
     private String uf;
     private double factor;
 
+    public EnergyEmissionFactor(String uf, double factor) {
+    }
+
     public String getUf() {
         return uf;
     }
