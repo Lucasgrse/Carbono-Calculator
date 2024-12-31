@@ -1,4 +1,4 @@
-package br.com.actionlabs.carboncalc.config;
+package br.com.actionlabs.carboncalc.infra.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
