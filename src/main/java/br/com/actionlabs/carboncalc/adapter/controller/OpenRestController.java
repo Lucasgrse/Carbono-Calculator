@@ -1,6 +1,10 @@
-package br.com.actionlabs.carboncalc.rest;
+package br.com.actionlabs.carboncalc.adapter.controller;
 
-import br.com.actionlabs.carboncalc.dto.*;
+import br.com.actionlabs.carboncalc.adapter.controller.dto.request.calculation.CarbonCalculationResultDTO;
+import br.com.actionlabs.carboncalc.adapter.controller.dto.request.calculation.StartCalcRequestDTO;
+import br.com.actionlabs.carboncalc.adapter.controller.dto.request.calculation.UpdateCalcInfoRequestDTO;
+import br.com.actionlabs.carboncalc.adapter.controller.dto.response.calculation.StartCalcResponseDTO;
+import br.com.actionlabs.carboncalc.adapter.controller.dto.response.calculation.UpdateCalcInfoResponseDTO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;

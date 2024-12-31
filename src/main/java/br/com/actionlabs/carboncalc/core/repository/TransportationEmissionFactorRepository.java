@@ -1,7 +1,7 @@
-package br.com.actionlabs.carboncalc.repository;
+package br.com.actionlabs.carboncalc.core.repository;
 
-import br.com.actionlabs.carboncalc.enums.TransportationType;
-import br.com.actionlabs.carboncalc.model.TransportationEmissionFactor;
+import br.com.actionlabs.carboncalc.core.domain.transportationEmission.TransportationType;
+import br.com.actionlabs.carboncalc.core.domain.transportationEmission.TransportationEmissionFactor;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 

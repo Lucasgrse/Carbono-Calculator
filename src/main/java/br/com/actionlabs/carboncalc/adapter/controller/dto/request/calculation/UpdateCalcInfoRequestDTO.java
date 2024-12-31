@@ -1,5 +1,6 @@
-package br.com.actionlabs.carboncalc.dto;
+package br.com.actionlabs.carboncalc.adapter.controller.dto.request.calculation;
 
+import br.com.actionlabs.carboncalc.adapter.controller.dto.response.transportation.TransportationDTO;
 import lombok.Data;
 
 import java.util.List;

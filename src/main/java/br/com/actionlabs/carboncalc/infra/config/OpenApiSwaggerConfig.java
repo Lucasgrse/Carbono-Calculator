@@ -1,4 +1,4 @@
-package br.com.actionlabs.carboncalc.config;
+package br.com.actionlabs.carboncalc.infra.config;
 
 import io.swagger.v3.oas.models.Paths;
 import org.springdoc.core.customizers.OpenApiCustomizer;

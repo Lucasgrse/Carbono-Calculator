@@ -1,7 +1,7 @@
-package br.com.actionlabs.carboncalc.rest;
+package br.com.actionlabs.carboncalc.adapter.controller;
 
 
-import br.com.actionlabs.carboncalc.dto.ServerStatusDTO;
+import br.com.actionlabs.carboncalc.adapter.controller.dto.request.server.ServerStatusDTO;
 import java.util.Date;
 
 import lombok.RequiredArgsConstructor;
