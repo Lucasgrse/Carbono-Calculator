@@ -3,7 +3,7 @@ server:
   version: "0.1.0"
 
   # SERVER
-  port: 8085
+  port: 8080
   compression:
     enabled: true
     mime-types: "application/json,text/json,application/xml,text/html,text/xml,text/plain,application/javascript,text/css"

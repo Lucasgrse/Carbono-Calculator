@@ -16,7 +16,7 @@ public class AppConfig implements WebMvcConfigurer {
             auth ->
                 auth.requestMatchers(
                         "/login/**",
-                        "/open/**",
+                        "/calculator/**",
                         "/status/**",
                         "/swagger-ui/**",
                         "swagger-ui.html",

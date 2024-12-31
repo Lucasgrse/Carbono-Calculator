@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="br.com.actionlabs.carboncalc.calculator.CreateCalculatorCarbonUseCaseTest" tests="1" skipped="0" failures="1" errors="0" timestamp="2024-12-31T04:08:40" hostname="DESKTOP-IUG0UFS" time="0.165">
+  <properties/>
+  <testcase name="mustSuccessfullyCreateACarbonCalculator()" classname="br.com.actionlabs.carboncalc.calculator.CreateCalculatorCarbonUseCaseTest" time="0.165">
+    <failure message="io.mockk.MockKException: no answer found for: EnergyEmissionFactorRepository(energyEmissionFactorRepository#2).findById(SP)" type="io.mockk.MockKException">io.mockk.MockKException: no answer found for: EnergyEmissionFactorRepository(energyEmissionFactorRepository#2).findById(SP)
+	at app//io.mockk.impl.stub.MockKStub.defaultAnswer(MockKStub.kt:93)
+	at app//io.mockk.impl.stub.MockKStub.answer(MockKStub.kt:42)
+	at app//io.mockk.impl.recording.states.AnsweringState.call(AnsweringState.kt:16)
+	at app//io.mockk.impl.recording.CommonCallRecorder.call(CommonCallRecorder.kt:53)
+	at app//io.mockk.impl.stub.MockKStub.handleInvocation(MockKStub.kt:271)
+	at app//io.mockk.impl.instantiation.JvmMockFactoryHelper$mockHandler$1.invocation(JvmMockFactoryHelper.kt:24)
+	at app//io.mockk.proxy.jvm.advice.Interceptor.call(Interceptor.kt:21)
+	at app//io.mockk.proxy.jvm.advice.BaseAdvice.handle(BaseAdvice.kt:42)
+	at app//io.mockk.proxy.jvm.advice.jvm.JvmMockKProxyInterceptor.interceptNoSuper(JvmMockKProxyInterceptor.java:45)
+	at app//br.com.actionlabs.carboncalc.core.repository.EnergyEmissionFactorRepository$Subclass1.findById(Unknown Source)
+	at app//br.com.actionlabs.carboncalc.core.repository.EnergyEmissionFactorRepository$Subclass1.findById(Unknown Source)
+	at app//br.com.actionlabs.carboncalc.core.usecase.calculator.CreateCalculatorCarbonUseCase.calculateEnergyEmission(CreateCalculatorCarbonUseCase.java:59)
+	at app//br.com.actionlabs.carboncalc.calculator.CreateCalculatorCarbonUseCaseTest$TestableCreateCalculatorCarbonUseCase.publicCalculateEnergyEmission(CreateCalculatorCarbonUseCaseTest.java:51)
+	at app//br.com.actionlabs.carboncalc.calculator.CreateCalculatorCarbonUseCaseTest.mustSuccessfullyCreateACarbonCalculator(CreateCalculatorCarbonUseCaseTest.java:102)
+	at java.base@17.0.8.1/java.lang.reflect.Method.invoke(Method.java:568)
+	at java.base@17.0.8.1/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at java.base@17.0.8.1/java.util.ArrayList.forEach(ArrayList.java:1511)
+</failure>
+  </testcase>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
