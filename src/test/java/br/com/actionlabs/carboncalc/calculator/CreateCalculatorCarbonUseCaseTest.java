@@ -1,7 +1,6 @@
 package br.com.actionlabs.carboncalc.calculator;
 
 import br.com.actionlabs.carboncalc.core.domain.calculateEmission.CalculatorEmissionFactor;
-import br.com.actionlabs.carboncalc.core.domain.energyEmission.EnergyEmissionFactor;
 import br.com.actionlabs.carboncalc.core.domain.transportationEmission.TransportationType;
 import br.com.actionlabs.carboncalc.core.repository.CalculatorEmissionInterface;
 import br.com.actionlabs.carboncalc.core.repository.EnergyEmissionFactorRepository;
@@ -10,15 +9,17 @@ import br.com.actionlabs.carboncalc.core.repository.TransportationEmissionFactor
 import br.com.actionlabs.carboncalc.core.usecase.calculator.CreateCalculatorCarbonUseCase;
 import br.com.actionlabs.carboncalc.core.usecase.calculator.input.CreateCalculatorCarbonInput;
 import br.com.actionlabs.carboncalc.helper.CalculatorTestHelper;
-import br.com.actionlabs.carboncalc.helper.EnergyEmissionTestHelper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.*;
+import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.mockito.MockitoAnnotations;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.doAnswer;
+import static org.mockito.Mockito.verify;
 
 @SpringBootTest
 public class CreateCalculatorCarbonUseCaseTest {

@@ -3,9 +3,10 @@ package br.com.actionlabs.carboncalc.adapter.controller;
 import br.com.actionlabs.carboncalc.adapter.controller.dto.request.calculation.CarbonCalculationResultDTO;
 import br.com.actionlabs.carboncalc.adapter.controller.dto.request.calculation.StartCalcRequestDTO;
 import br.com.actionlabs.carboncalc.adapter.controller.dto.request.calculation.UpdateCalcInfoRequestDTO;
-import br.com.actionlabs.carboncalc.adapter.controller.dto.response.calculation.UpdateCalcInfoResponseDTO;
 import br.com.actionlabs.carboncalc.core.usecase.calculator.CreateCalculatorCarbonUseCase;
+import br.com.actionlabs.carboncalc.core.usecase.calculator.UpdateCalculatorCarbonUseCase;
 import br.com.actionlabs.carboncalc.core.usecase.calculator.input.CreateCalculatorCarbonInput;
+import br.com.actionlabs.carboncalc.core.usecase.calculator.input.UpdateCalculatorCarbonInput;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -17,16 +18,18 @@ import org.springframework.web.bind.annotation.*;
 public class CalculatorCarbonController {
 
   private final CreateCalculatorCarbonUseCase createCalculatorCarbonUseCase;
+  private final UpdateCalculatorCarbonUseCase updateCalculatorCarbonUseCase;
 
-    public CalculatorCarbonController(CreateCalculatorCarbonUseCase createCalculatorCarbonUseCase) {
-        this.createCalculatorCarbonUseCase = createCalculatorCarbonUseCase;
-    }
+  public CalculatorCarbonController(
+          CreateCalculatorCarbonUseCase createCalculatorCarbonUseCase,
+          UpdateCalculatorCarbonUseCase updateCalculatorCarbonUseCase) {
+    this.createCalculatorCarbonUseCase = createCalculatorCarbonUseCase;
+    this.updateCalculatorCarbonUseCase = updateCalculatorCarbonUseCase;
+  }
 
-    @PostMapping("/calculator")
+  @PostMapping("/calculator")
   @ResponseStatus(HttpStatus.CREATED)
-  public String startCalculation(
-      @RequestBody @Valid StartCalcRequestDTO request) {
-
+  public String startCalculation(@RequestBody @Valid StartCalcRequestDTO request) {
     return createCalculatorCarbonUseCase.execute(new CreateCalculatorCarbonInput(
             request.getName(),
             request.getEmail(),
@@ -37,14 +40,18 @@ public class CalculatorCarbonController {
             request.distance,
             request.wasteProduction)
     );
-
-
   }
 
-  @PutMapping("info")
-  public ResponseEntity<UpdateCalcInfoResponseDTO> updateInfo(
-      @RequestBody UpdateCalcInfoRequestDTO request) {
-    throw new RuntimeException("Not implemented");
+  @PutMapping("/calculator/update")
+  @ResponseStatus(HttpStatus.NO_CONTENT)
+  public Object updateCalculator(@RequestBody @Valid UpdateCalcInfoRequestDTO request) {
+    return updateCalculatorCarbonUseCase.execute(new UpdateCalculatorCarbonInput(
+            request.getId(),
+            request.getEnergyConsumption(),
+            request.getTransportation(),
+            request.getSolidWasteTotal(),
+            request.getRecyclePercentage()
+    ));
   }
 
   @GetMapping("result/{id}")

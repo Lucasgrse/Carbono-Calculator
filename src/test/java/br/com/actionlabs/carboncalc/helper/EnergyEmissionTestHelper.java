@@ -6,9 +6,8 @@ public class EnergyEmissionTestHelper {
 
     public static EnergyEmissionFactor buildEnergyEmissionFactor(
             String uf,
-            double factor) {
-
-
+            double factor)
+    {
         if (uf == null) uf = "SP";
         if (factor == 0) factor = 0.27;
 

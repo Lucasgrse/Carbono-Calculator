@@ -1,10 +1,13 @@
 package br.com.actionlabs.carboncalc.helper;
 
+import br.com.actionlabs.carboncalc.adapter.controller.dto.response.transportation.TransportationDTO;
 import br.com.actionlabs.carboncalc.core.domain.calculateEmission.CalculatorEmissionFactor;
 import br.com.actionlabs.carboncalc.core.domain.transportationEmission.TransportationType;
 import br.com.actionlabs.carboncalc.core.usecase.calculator.input.CreateCalculatorCarbonInput;
+import br.com.actionlabs.carboncalc.core.usecase.calculator.input.UpdateCalculatorCarbonInput;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 public class CalculatorTestHelper {
 
@@ -57,5 +60,26 @@ public class CalculatorTestHelper {
 
         return new CreateCalculatorCarbonInput(name, email, phoneNumber, uf,
                 energyConsumption, transportType, distance, wasteProduction);
+    }
+
+    public static UpdateCalculatorCarbonInput buildFakeUpdateCalculatorInput(
+            String id,
+            int energyConsumption,
+            List<TransportationDTO> transportation,
+            int solidWasteTotal,
+            double recyclePercentage
+    ) {
+        if (id == null) id = "123";
+        if (energyConsumption == 0) energyConsumption = 50;
+        if (transportation == null || transportation.isEmpty()) {
+            transportation = List.of(
+                    new TransportationDTO(TransportationType.CAR, 2),
+                    new TransportationDTO(TransportationType.MOTORCYCLE, 1)
+            );
+        }
+        if (solidWasteTotal == 0) solidWasteTotal = 5;
+        if (recyclePercentage == 0) recyclePercentage = 0.3;
+
+        return new UpdateCalculatorCarbonInput(id, energyConsumption, transportation, solidWasteTotal, recyclePercentage);
     }
 }

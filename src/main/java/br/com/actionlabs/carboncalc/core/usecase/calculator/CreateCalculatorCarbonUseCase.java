@@ -23,7 +23,12 @@ public class CreateCalculatorCarbonUseCase implements UseCase<CreateCalculatorCa
     private final SolidWasteEmissionFactorRepository solidWasteEmissionFactorRepository;
     private final TransportationEmissionFactorRepository transportationEmissionFactorRepository;
 
-    public CreateCalculatorCarbonUseCase(CalculatorEmissionInterface calculatorEmissionInterface, EnergyEmissionFactorRepository energyEmissionFactorRepository, SolidWasteEmissionFactorRepository solidWasteEmissionFactorRepository, TransportationEmissionFactorRepository transportationEmissionFactorRepository) {
+    public CreateCalculatorCarbonUseCase(
+            CalculatorEmissionInterface calculatorEmissionInterface,
+            EnergyEmissionFactorRepository energyEmissionFactorRepository,
+            SolidWasteEmissionFactorRepository solidWasteEmissionFactorRepository,
+            TransportationEmissionFactorRepository transportationEmissionFactorRepository
+    ) {
         this.calculatorEmissionInterface = calculatorEmissionInterface;
         this.energyEmissionFactorRepository = energyEmissionFactorRepository;
         this.solidWasteEmissionFactorRepository = solidWasteEmissionFactorRepository;
