@@ -1,4 +1,4 @@
-package br.com.actionlabs.carboncalc.adapter.controller.dto.response.transportation;
+package br.com.actionlabs.carboncalc.adapter.controller.dto.response;
 
 import br.com.actionlabs.carboncalc.core.domain.transportationEmission.TransportationType;
 import lombok.Data;

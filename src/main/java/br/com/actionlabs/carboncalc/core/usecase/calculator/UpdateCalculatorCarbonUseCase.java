@@ -1,6 +1,6 @@
 package br.com.actionlabs.carboncalc.core.usecase.calculator;
 
-import br.com.actionlabs.carboncalc.adapter.controller.dto.response.transportation.TransportationDTO;
+import br.com.actionlabs.carboncalc.adapter.controller.dto.response.TransportationDTO;
 import br.com.actionlabs.carboncalc.core.domain.calculateEmission.CalculatorEmissionFactor;
 import br.com.actionlabs.carboncalc.core.domain.transportationEmission.TransportationEmissionFactor;
 import br.com.actionlabs.carboncalc.core.repository.CalculatorEmissionInterface;

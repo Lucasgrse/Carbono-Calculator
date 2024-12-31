@@ -1,6 +1,6 @@
 package br.com.actionlabs.carboncalc.core.usecase.calculator.input;
 
-import br.com.actionlabs.carboncalc.adapter.controller.dto.response.transportation.TransportationDTO;
+import br.com.actionlabs.carboncalc.adapter.controller.dto.response.TransportationDTO;
 
 import java.util.List;
 
