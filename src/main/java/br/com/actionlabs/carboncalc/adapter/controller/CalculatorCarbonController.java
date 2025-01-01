@@ -1,7 +1,7 @@
 package br.com.actionlabs.carboncalc.adapter.controller;
 
-import br.com.actionlabs.carboncalc.adapter.controller.dto.request.calculation.StartCalcRequestDTO;
-import br.com.actionlabs.carboncalc.adapter.controller.dto.request.calculation.UpdateCalcInfoRequestDTO;
+import br.com.actionlabs.carboncalc.adapter.controller.dto.request.calculation.CalculatorCarbonRequestDTO;
+import br.com.actionlabs.carboncalc.adapter.controller.dto.request.calculation.UpdateCalculatorCarbonRequestDTO;
 import br.com.actionlabs.carboncalc.core.domain.calculateEmission.CalculatorEmissionFactor;
 import br.com.actionlabs.carboncalc.core.usecase.calculator.CreateCalculatorCarbonUseCase;
 import br.com.actionlabs.carboncalc.core.usecase.calculator.FindCalculatorCarbonUseCase;
@@ -33,7 +33,7 @@ public class CalculatorCarbonController {
 
   @PostMapping("/calculator")
   @ResponseStatus(HttpStatus.CREATED)
-  public String startCalculation(@RequestBody @Valid StartCalcRequestDTO request) {
+  public String startCalculation(@RequestBody @Valid CalculatorCarbonRequestDTO request) {
     return createCalculatorCarbonUseCase.execute(new CreateCalculatorCarbonInput(
             request.getName(),
             request.getEmail(),
@@ -48,7 +48,7 @@ public class CalculatorCarbonController {
 
   @PutMapping("/calculator/update")
   @ResponseStatus(HttpStatus.NO_CONTENT)
-  public Object updateCalculator(@RequestBody @Valid UpdateCalcInfoRequestDTO request) {
+  public Object updateCalculator(@RequestBody @Valid UpdateCalculatorCarbonRequestDTO request) {
     return updateCalculatorCarbonUseCase.execute(new UpdateCalculatorCarbonInput(
             request.getId(),
             request.getEnergyConsumption(),
