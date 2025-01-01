@@ -10,12 +10,18 @@ import java.util.List;
 @Data
 public class UpdateCalcInfoRequestDTO {
   private String id;
+  @NotNull
+  @NotEmpty(message = "O consumo de energia não pode ser vazio.")
   private int energyConsumption;
   @NotNull
   @NotEmpty(message = "A lista de transporte não pode estar vazia.")
   private List<TransportationDTO> transportation;
-  private int solidWasteTotal;
-  private double recyclePercentage;
+  @NotNull
+  @NotEmpty(message = "O valor de resíduo não reciclável não pode ser vazio.")
+  private int solidRecycleWaste;
+  @NotNull
+  @NotEmpty(message = "O valor de resíduo reciclável não pode ser vazio.")
+  private double solidNonRecycleWaste;
 
   public String getId() {
     return id;
@@ -29,31 +35,15 @@ public class UpdateCalcInfoRequestDTO {
     return energyConsumption;
   }
 
-  public void setEnergyConsumption(int energyConsumption) {
-    this.energyConsumption = energyConsumption;
-  }
-
   public List<TransportationDTO> getTransportation() {
     return transportation;
   }
 
-  public void setTransportation(List<TransportationDTO> transportation) {
-    this.transportation = transportation;
+  public int getSolidRecycleWaste() {
+    return solidRecycleWaste;
   }
 
-  public int getSolidWasteTotal() {
-    return solidWasteTotal;
-  }
-
-  public void setSolidWasteTotal(int solidWasteTotal) {
-    this.solidWasteTotal = solidWasteTotal;
-  }
-
-  public double getRecyclePercentage() {
-    return recyclePercentage;
-  }
-
-  public void setRecyclePercentage(double recyclePercentage) {
-    this.recyclePercentage = recyclePercentage;
+  public double getSolidNonRecycleWaste() {
+    return solidNonRecycleWaste;
   }
 }
