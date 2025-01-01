@@ -53,8 +53,8 @@ public class CalculatorCarbonController {
             request.getId(),
             request.getEnergyConsumption(),
             request.getTransportation(),
-            request.getSolidWasteTotal(),
-            request.getRecyclePercentage()
+            request.getSolidRecycleWaste(),
+            request.getSolidNonRecycleWaste()
     ));
   }
 

@@ -68,6 +68,7 @@ public class CreateCalculatorCarbonUseCase implements UseCase<CreateCalculatorCa
     protected double calculateEnergyEmission(String uf, double energyConsumption) {
         EnergyEmissionFactor energy = energyEmissionFactorRepository.findById(uf).orElse(null);
         if (energy != null) {
+            if(energyConsumption == 0) return 0;
             return energyConsumption * energy.getFactor();
         } else {
             throw new IllegalArgumentException("Fator de emissão de energia não encontrado para a UF: " + uf);
@@ -77,6 +78,7 @@ public class CreateCalculatorCarbonUseCase implements UseCase<CreateCalculatorCa
     protected double calculateTransportEmission(TransportationType type, double distance) {
         TransportationEmissionFactor transport = transportationEmissionFactorRepository.findById(type).orElse(null);
         if (transport != null) {
+            if(distance == 0) return 0;
             return distance * transport.getFactor();
         } else {
             throw new IllegalArgumentException("Fator de emissão de transporte não encontrado para o tipo: " + type);
@@ -86,6 +88,7 @@ public class CreateCalculatorCarbonUseCase implements UseCase<CreateCalculatorCa
     protected double calculateWasteEmissionRecyclable(String uf, double wasteProduction) {
         SolidWasteEmissionFactor recyclable = solidWasteEmissionFactorRepository.findById(uf).orElse(null);
         if (recyclable != null) {
+            if(wasteProduction == 0) return 0;
             return wasteProduction * recyclable.getRecyclableFactor();
         } else {
             throw new IllegalArgumentException("Fator de emissão de resíduos não encontrado para o tipo: " + uf);
@@ -95,6 +98,7 @@ public class CreateCalculatorCarbonUseCase implements UseCase<CreateCalculatorCa
     protected double calculateWasteEmissionNonRecyclable(String wasteType, double wasteProduction) {
         SolidWasteEmissionFactor nonRecyclable = solidWasteEmissionFactorRepository.findById(wasteType).orElse(null);
         if (nonRecyclable != null) {
+            if(wasteProduction == 0) return 0;
             return wasteProduction * nonRecyclable.getNonRecyclableFactor();
         } else {
             throw new IllegalArgumentException("Fator de emissão de resíduos não encontrado para o tipo: " + wasteType);

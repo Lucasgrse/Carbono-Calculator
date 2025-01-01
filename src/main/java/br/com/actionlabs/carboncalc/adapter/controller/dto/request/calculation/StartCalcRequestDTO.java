@@ -1,13 +1,23 @@
 package br.com.actionlabs.carboncalc.adapter.controller.dto.request.calculation;
 
 import br.com.actionlabs.carboncalc.core.domain.transportationEmission.TransportationType;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 @Data
 public class StartCalcRequestDTO {
+    @NotNull
+    @NotEmpty(message = "O campo nome não pode ser vazio.")
     private String name;
+    @NotNull
+    @NotEmpty(message = "O campo email não pode ser vazio.")
     private String email;
+    @NotNull
+    @NotEmpty(message = "O campo estado não pode ser vazio.")
     private String uf;
+    @NotNull
+    @NotEmpty(message = "O campo telefone não pode ser vazio.")
     private String phoneNumber;
     public double energyConsumption;
     public TransportationType type;
@@ -18,31 +28,15 @@ public class StartCalcRequestDTO {
     return name;
   }
 
-  public void setName(String name) {
-    this.name = name;
-  }
-
   public String getEmail() {
     return email;
-  }
-
-  public void setEmail(String email) {
-    this.email = email;
   }
 
   public String getUf() {
     return uf;
   }
 
-  public void setUf(String uf) {
-    this.uf = uf;
-  }
-
   public String getPhoneNumber() {
     return phoneNumber;
-  }
-
-  public void setPhoneNumber(String phoneNumber) {
-    this.phoneNumber = phoneNumber;
   }
 }
