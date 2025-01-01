@@ -1,7 +1,9 @@
 package br.com.actionlabs.carboncalc.adapter.controller;
 
-import br.com.actionlabs.carboncalc.adapter.controller.dto.request.calculation.StartCalcRequestDTO;
-import br.com.actionlabs.carboncalc.adapter.controller.dto.request.calculation.UpdateCalcInfoRequestDTO;
+import br.com.actionlabs.carboncalc.adapter.controller.dto.request.calculation.CalculatorCarbonRequestDTO;
+import br.com.actionlabs.carboncalc.adapter.controller.dto.request.calculation.UpdateCalculatorCarbonRequestDTO;
+import br.com.actionlabs.carboncalc.adapter.controller.dto.response.CalculatorCarbonResponseDTO;
+import br.com.actionlabs.carboncalc.adapter.mapper.CalculatorCarbonMapper;
 import br.com.actionlabs.carboncalc.core.domain.calculateEmission.CalculatorEmissionFactor;
 import br.com.actionlabs.carboncalc.core.usecase.calculator.CreateCalculatorCarbonUseCase;
 import br.com.actionlabs.carboncalc.core.usecase.calculator.FindCalculatorCarbonUseCase;
@@ -21,19 +23,24 @@ public class CalculatorCarbonController {
   private final CreateCalculatorCarbonUseCase createCalculatorCarbonUseCase;
   private final UpdateCalculatorCarbonUseCase updateCalculatorCarbonUseCase;
   private final FindCalculatorCarbonUseCase findCalculatorCarbonUseCase;
+  private final CalculatorCarbonMapper calculatorCarbonMapper;
 
   public CalculatorCarbonController(
           CreateCalculatorCarbonUseCase createCalculatorCarbonUseCase,
           UpdateCalculatorCarbonUseCase updateCalculatorCarbonUseCase,
-          FindCalculatorCarbonUseCase findCalculatorCarbonUseCase) {
+          FindCalculatorCarbonUseCase findCalculatorCarbonUseCase,
+          CalculatorCarbonMapper calculatorCarbonMapper) {
     this.createCalculatorCarbonUseCase = createCalculatorCarbonUseCase;
     this.updateCalculatorCarbonUseCase = updateCalculatorCarbonUseCase;
     this.findCalculatorCarbonUseCase = findCalculatorCarbonUseCase;
+    this.calculatorCarbonMapper = calculatorCarbonMapper;
   }
 
   @PostMapping("/calculator")
   @ResponseStatus(HttpStatus.CREATED)
-  public String startCalculation(@RequestBody @Valid StartCalcRequestDTO request) {
+  public String startCalculation(
+          @RequestBody @Valid CalculatorCarbonRequestDTO request
+  ) {
     return createCalculatorCarbonUseCase.execute(new CreateCalculatorCarbonInput(
             request.getName(),
             request.getEmail(),
@@ -48,7 +55,9 @@ public class CalculatorCarbonController {
 
   @PutMapping("/calculator/update")
   @ResponseStatus(HttpStatus.NO_CONTENT)
-  public Object updateCalculator(@RequestBody @Valid UpdateCalcInfoRequestDTO request) {
+  public Object updateCalculator(
+          @RequestBody @Valid UpdateCalculatorCarbonRequestDTO request
+  ) {
     return updateCalculatorCarbonUseCase.execute(new UpdateCalculatorCarbonInput(
             request.getId(),
             request.getEnergyConsumption(),
@@ -59,7 +68,11 @@ public class CalculatorCarbonController {
   }
 
   @GetMapping("/calculator/{id}")
-  public CalculatorEmissionFactor getResult(@PathVariable String id) {
-    return findCalculatorCarbonUseCase.execute(new FindCalculatorCarbonInput(id));
+  public CalculatorCarbonResponseDTO getResult(
+          @PathVariable String id
+  ) {
+    FindCalculatorCarbonInput input = new FindCalculatorCarbonInput(id);
+    CalculatorEmissionFactor findCalculator = findCalculatorCarbonUseCase.execute(input);
+    return calculatorCarbonMapper.calculatorCarbonResponseDTO(findCalculator);
   }
 }

@@ -6,7 +6,7 @@ import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 @Data
-public class StartCalcRequestDTO {
+public class CalculatorCarbonRequestDTO {
     @NotNull
     @NotEmpty(message = "O campo nome não pode ser vazio.")
     private String name;

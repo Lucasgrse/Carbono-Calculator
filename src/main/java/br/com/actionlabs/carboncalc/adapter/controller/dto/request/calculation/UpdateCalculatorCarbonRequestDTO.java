@@ -1,6 +1,7 @@
 package br.com.actionlabs.carboncalc.adapter.controller.dto.request.calculation;
 
 import br.com.actionlabs.carboncalc.adapter.controller.dto.response.TransportationDTO;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
@@ -8,19 +9,16 @@ import lombok.Data;
 import java.util.List;
 
 @Data
-public class UpdateCalcInfoRequestDTO {
+public class UpdateCalculatorCarbonRequestDTO {
   private String id;
-  @NotNull
-  @NotEmpty(message = "O consumo de energia não pode ser vazio.")
+  @Min(value = 1, message = "O consumo de energia deve ser maior que zero.")
   private int energyConsumption;
-  @NotNull
-  @NotEmpty(message = "A lista de transporte não pode estar vazia.")
+  @NotNull(message = "A lista de transporte não pode ser nula.")
+  @NotEmpty(message = "A lista de transporte deve conter ao menos um item.")
   private List<TransportationDTO> transportation;
-  @NotNull
-  @NotEmpty(message = "O valor de resíduo não reciclável não pode ser vazio.")
+  @Min(value = 0, message = "O valor de resíduo reciclável não pode ser negativo.")
   private int solidRecycleWaste;
-  @NotNull
-  @NotEmpty(message = "O valor de resíduo reciclável não pode ser vazio.")
+  @Min(value = 0, message = "O valor de resíduo não reciclável não pode ser negativo.")
   private double solidNonRecycleWaste;
 
   public String getId() {

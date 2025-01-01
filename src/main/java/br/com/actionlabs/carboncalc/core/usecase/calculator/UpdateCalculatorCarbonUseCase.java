@@ -47,6 +47,7 @@ public class UpdateCalculatorCarbonUseCase implements UseCase<UpdateCalculatorCa
             existingCalculation.setRecyclableWaste(input.getRecyclePercentage() * 2);
             existingCalculation.setNonRecyclableWaste(input.getSolidWasteTotal());
 
+
             return calculatorEmissionInterface.save(existingCalculation);
 
         } else {
