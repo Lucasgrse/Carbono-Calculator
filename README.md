@@ -2,32 +2,44 @@
 
 ## Description
 
-Create the backend for a carbon calculator, using Java, Spring Boot and MongoDB.
+The AL Carbon Calculator is an API developed in Java with Spring Boot and MongoDB to calculate a user's carbon footprint. The application allows users to register their basic information, provide consumption habits, and receive a detailed calculation of their carbon emissions. This project focuses on best practices, clean code organization, and leveraging modern technologies.
 
-There are only 3 endpoints that need to be implemented:
+### [POST] /calculator
 
-### [POST] /open/start-calc
+Initializes a specific carbon footprint calculation for a user.
+Input: All required parameters for the calculation must be provided, including:
+Name: The user's full name.
+Email: A valid email address.
+Phone Number: The user's contact phone number.
+State/UF: The state where the user resides.
+Each calculation is uniquely identified with a generated ID, allowing users to manage and retrieve calculations independently.
+Output: Returns a unique calculation ID (calculationId) to be used in subsequent endpoints.
+This allows the system to manage multiple calculations for the same or different users seamlessly.
 
-Starts the calculation process. Receives the user basic info and stores a new calculation in the database. Returns the
-calculation's id
-to be used in the following endpoints. For this endpoint, every parameter is mandatory (name, email, phoneNumber and
-UF).
+### [PUT] /calculator/update
 
-### [PUT] /open/info
+Updates or overwrites the calculation data for a specific calculation ID.
+Although this operation behaves like a PATCH (updating specific fields), it uses a PUT because it entirely replaces the values related to the calculator inputs.
+Input Parameters:
+Energy Consumption: User's energy usage in kWh.
+Transportation: Details of distances traveled and types of transportation used.
+Solid Waste Production: Amount of solid waste produced, along with the recycling percentage (recyclePercentage as a value between 0 and 1.0).
+The calculation data is saved as a new version in the database, overwriting any previous values for the same calculation ID.
+If called multiple times for the same ID, the existing data will be replaced with the new values provided.
+Behavior: Ensures data consistency by maintaining a single, updated record for each calculation.
 
-Receives information needed to calculate the user's carbon emission (energy consumption, transportation and solid waste
-production) and stores it in the database.
+### [GET] /calculator/{id}
 
-Please consider `recyclePercentage` as a double from 0 to 1.0, representing the percentage of recyclable solid waste.
-
-If this endpoint is called a second time for the same id, all its parameters must be overwritten.
-
-### [GET] /open/result/{id}
-
-Returns the carbon footprint for the calculation with the given id.
-
-All these endpoints are already defined in the class `OpenRestController`. You should implement the methods in this
-class.
+Retrieves the detailed carbon footprint calculation for the given calculation ID.
+Behavior:
+Performs a direct query to the database to fetch the stored calculation data associated with the provided id.
+The retrieved database object is then mapped into a DTO (Data Transfer Object) using a dedicated mapper, ensuring a clean and consistent response structure for the client.
+Output: Returns a well-structured DTO containing the calculated carbon footprint, including:
+Total emissions for energy consumption.
+Emissions from transportation.
+Emissions from solid waste.
+A summary of the total carbon footprint.
+This approach abstracts database structures and ensures flexibility for future modifications to the response format without affecting the underlying database schema.
 
 ## Calculator logic
 
@@ -65,9 +77,6 @@ contents defined in the `init-mongo.js` script when first started - all default 
 are only for this test and should not be
 considered real values for carbon emissions :smile:
 
-If you need to reset the database to its initial state, you can run `docker compose down -v`, which will erase the
-database and repopulate the initial values in the next start.
-
 ### Running the application
 
 You can use your IDE of choice to run the application. The main class is `CarbonCalculatorApplication`. The server will
@@ -76,35 +85,3 @@ on port 8085 (http://localhost:8085).
 
 There is a swagger documentation available on http://localhost:8085/swagger-ui.html.
 
-### Classes already created
-
-We created the classes for the RestController and the DTOs needed to execute its endpoints. If you want to change them,
-please keep the same property names - don't break the defined interface.
-
-We also created 3 basic models and their corresponding Repository interfaces for the carbon emission values that you
-need to use in your implementations. These are the objects pre-populated in the
-database. Feel free to add more methods to the *Repository interfaces as needed.
-
-You will certainly need to create new classes to implement the logic for the endpoints and new models. Feel free to
-organize the code as you see fit.
-
-There are a few implemented classes to check the application's health, security and swagger configs and so on. There's
-probably no need to modify them, but if you think it's necessary, go ahead.
-
-## Additional libs
-
-You are free to add any dependencies you see fit to the project. We want you to implement this challenge the same way
-you deal in any other project: use your best judgment.
-
-## Test evaluation
-
-Your test will be evaluated both on the correctness of the implementation and the quality of the code.
-
-There is no need to host your code anywhere. Publish your code in a public repository and share it with us, so we can
-download
-and run it.
-
-Forks are disabled in this repository, so you should download the code and create a new repository with your
-implementation.
-
-Good luck! :smile:
